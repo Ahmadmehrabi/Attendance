@@ -7,7 +7,7 @@ export default function MainScreen() {
   const [permission, requestPermission] = useCameraPermissions();
 
   const handleCodeScanned = (data) => {
-    console.log(data);
+    alert(data);
   }
 
   if (!permission) {
@@ -31,13 +31,13 @@ export default function MainScreen() {
 
   return (
     <View style={styles.container}>
-      <CameraView style={styles.camera} ratio={'4:3'} facing={facing} barcodeScannerSettings={{ barCodeTypes: ['qr'] }} onBarcodeScanned={handleCodeScanned}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-            <Text style={styles.text}>Flip Camera</Text>
-          </TouchableOpacity>
-        </View>
+      <CameraView style={styles.camera} barcodeScannerSettings={{ barCodeTypes: ['qr'] }} onBarcodeScanned={handleCodeScanned}>
+
       </CameraView>
+
+      <View style={styles.info}>
+      <Text>Salam</Text>
+      </View>
     </View>
   );
 }
@@ -54,20 +54,21 @@ const styles = StyleSheet.create({
   camera: {
     flex: 1,
   },
-  buttonContainer: {
+  info: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: 'transparent',
+    backgroundColor: 'green',
     margin: 64,
   },
-  button: {
-    flex: 1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
-  },
+
   text: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
   },
 });
+
+
+//          <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
+//            <Text style={styles.text}>Flip Camera</Text>
+//          </TouchableOpacity>
